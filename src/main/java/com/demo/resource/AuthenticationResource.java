@@ -1,5 +1,6 @@
 package com.demo.resource;
 
+import com.demo.dto.AuthRequest;
 import com.demo.dto.AuthResponse;
 import com.demo.entity.User;
 import com.demo.service.UserService;
@@ -16,12 +17,12 @@ public class AuthenticationResource {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser() {
-        return new ResponseEntity<>(userService.addUser(), HttpStatus.CREATED);
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+        return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> loginUser() {
-        return new ResponseEntity<>(userService.loginUser(), HttpStatus.OK);
+    public ResponseEntity<AuthResponse> loginUser(@RequestBody AuthRequest authRequest) {
+        return new ResponseEntity<>(userService.loginUser(authRequest), HttpStatus.OK);
     }
 }

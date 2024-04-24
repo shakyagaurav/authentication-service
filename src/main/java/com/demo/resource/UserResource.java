@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UserResource {
 
@@ -17,6 +17,6 @@ public class UserResource {
 
     @GetMapping("{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findByUser(id), HttpStatus.OK);
     }
 }
