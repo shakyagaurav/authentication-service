@@ -27,12 +27,12 @@ public class UserResource {
         this.webClient = WebClient.builder().baseUrl("http://localhost:8082").build();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         return new ResponseEntity<>(userService.findByUser(id), HttpStatus.OK);
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<Mono<Payment>> callPayment(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
         log.info("call payment service from authentication service and get token: {}", token);
         // Set JWT token as a bearer token
